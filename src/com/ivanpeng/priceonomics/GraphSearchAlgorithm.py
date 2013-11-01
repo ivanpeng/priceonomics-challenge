@@ -54,7 +54,7 @@ This is the class which will do the graph traversal. Utilizing a heuristic which
 calculate what the best path is, from 
 '''
 class GreedyNoRepeat():
-    def __init__(self, graph, length):
+    def __init__(self, graph, length=3):
         self.graph = graph
         self.path = []
         self.exchangeList = []
@@ -82,10 +82,8 @@ class GreedyNoRepeat():
             scores = []
             for node in nodeList:
                 scores.append(self.heuristic.scoreRatio(currentNode, node))
-            print "Scores: " + str(scores)
             # choose max of list, and then go in that direction
             index = scores.index(max(scores))
-            print "We are traversing to node with index " + str(index) + " and value " + str(nodeList[index])
             # append node to path, and call traverse with k incremented
             # need extra check case if it's first case
             self.path.append(nodeList[index])

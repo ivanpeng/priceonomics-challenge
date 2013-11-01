@@ -68,8 +68,10 @@ class Graph():
     def spectralAnalysis(self):
         # Assumes adjacency matrix is already made
         for i in range(2,self.numNodes+1):
-            print "Spectral analysis, k= " + str(i) + ":\n" + str(linalg.matrix_power(self.adjMatrix,i)/i)
-            print ""
+            m = linalg.matrix_power(self.adjMatrix,i)/i
+        print "Spectral analysis, k= " + str(i) + ":\n" + str(m)
+        print ""
+        return m.diagonal()
     
     def __str__(self):
         return "Nodes: " + str(self.nodes) + "\nEdges: " + str(self.edges)
