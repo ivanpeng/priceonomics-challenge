@@ -32,26 +32,28 @@ for itr,elem in enumerate(data):
 print graphObj
 graphObj.toAdjacencyMatrix()
 diagonal = graphObj.spectralAnalysis()
+diagonal = list(diagonal)
 ind = diagonal.index(max(diagonal))
 print "Spectral analysis yields node with index " + str(ind) + " as most potential to have the greatest profit for arbitrage"
 #TODO: implement ordered dictionary
 
-if (graphObj.nodes > 10):
+if (len(graphObj.nodes) > 10):
     print "Using greedy algorithm"
 else:
     print "Using brute-force DFS algorithm"
 for i, node in enumerate(graphObj.nodes):
-    if (graphObj.nodes > 10):
+    print "Starting at node " + str(node)
+    if (len(graphObj.nodes) > 10):
         g3 = GreedyNoRepeat(graphObj)
         g3.traverse(node)
         print "From traversal, the optimal path is " + str(g3.path) + "\n\n"
     else:
-        startTime = time.clock()
+        startTime = time()
         gdfs = DFSModified(graphObj)
         gdfs.traverse(node, [])
         print "From traversal, the optimal path is " + str(gdfs.path) + "\n\n"
         gdfs.determineExchange()
-        print "Total time of computation was " + str(time.clock() - startTime)
+        print "Total time of computation was " + str(time() - startTime)
 
 print "==========================================="
 print "Greedy Algorithm"
@@ -59,8 +61,10 @@ print "Greedy Algorithm"
 # now that we have the graphing object, proceed to determine the traversal loop
 for i,node in enumerate(graphObj.nodes):
     print "Traversal from node " + str(node) 
+    startTime = time()
     g3 = GreedyNoRepeat(graphObj, 3)
     g3.traverse(node)
     print "From traversal, the optimal path is " + str(g3.path) + "\n\n"
+    print "Total time of computation was " + str(time()-startTime)
 
 
