@@ -51,7 +51,7 @@ for i, node in enumerate(graphObj.nodes):
         startTime = time()
         gdfs = DFSModified(graphObj)
         gdfs.traverse(node, [])
-        print "From traversal, the optimal path is " + str(gdfs.path) + "\n\n"
+        print "From traversal, the set of all paths is " + str(gdfs.path) + "\n\n"
         gdfs.determineExchange()
         print "Total time of computation was " + str(time() - startTime)
 
